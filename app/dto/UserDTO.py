@@ -1,6 +1,5 @@
 # Import Module
-from pydantic import BaseModel
-from typing import Optional, List
+from dependencies import *
 from constant.enums.Role import Role
 
 # Define User DTO Class

@@ -1,7 +1,6 @@
 # Import modules
-from typing import Optional
-from uuid import UUID
-from fastapi import FastAPI, HTTPException
+from dependencies import *
+from routes.users import user_router
 from models.User import User
 from config.db import db # DB config
 from dto.UserDTO import UserDTO
@@ -18,6 +17,7 @@ async def read_root():
 @app.get("/items/{item_id}")
 async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
+
 
 # Fetch All Users
 @app.get("/api/v1/users")
@@ -71,3 +71,4 @@ async def update_user(user_id: UUID, userDTO: UserDTO):
         status_code=404,
         detail=f"user with id: {user_id} doesn't exist."
     )
+

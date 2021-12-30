@@ -1,4 +1,4 @@
-from enum import Enum
+from dependencies import *
 
 # Gender Enum Class
 class Gender(str, Enum):

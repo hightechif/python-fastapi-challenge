@@ -1,4 +1,4 @@
-from enum import Enum
+from dependencies import *
 
 # Role Enum Class
 class Role(str, Enum):

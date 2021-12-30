@@ -1,7 +1,5 @@
 # Import modules
-from pydantic import BaseModel
-from uuid import UUID, uuid4
-from typing import Optional, List
+from dependencies import *
 from constant.enums.Gender import Gender
 from constant.enums.Role import Role
 

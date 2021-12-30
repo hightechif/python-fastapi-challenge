@@ -1,8 +1,7 @@
-from typing import List
+from dependencies import *
 from models.User import User
 from constant.enums.Gender import Gender
 from constant.enums.Role import Role
-from uuid import UUID
 
 db: List[User] = [
     User(

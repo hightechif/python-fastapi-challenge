@@ -1,4 +1,5 @@
 fastapi
 uvicorn[standard]
+fastapi_pagination
 pydantic[email]
 gunicorn

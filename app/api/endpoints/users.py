@@ -1,6 +1,7 @@
 # Import dependencies
-from fastapi import APIRouter
 from app.dependencies import *
+from fastapi import APIRouter
+from fastapi_pagination import Page, add_pagination, paginate
 from app.database import db # DB config
 from app.models.User import User
 from app.dto.UserDTO import UserDTO
@@ -8,9 +9,11 @@ from app.dto.UserDTO import UserDTO
 router = APIRouter()
 
 # Fetch All Users
-@router.get("/")
+@router.get("/", response_model=Page[User])
 async def fetch_users():
-    return db
+    return paginate(db)
+
+add_pagination(router)
 
 # Fetch User by Id
 @router.get("/{user_id}")

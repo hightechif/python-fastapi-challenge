@@ -1,8 +1,9 @@
 from dependencies import *
-from models.User import User
+from core.models.User import User
 from constant.enums.Gender import Gender
 from constant.enums.Role import Role
 
+# Data Seeder
 db: List[User] = [
     User(
         id=UUID("e9ad1b69-bbf8-4610-a9ae-3dc63f767f4e"),

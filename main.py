@@ -1,9 +1,9 @@
 # Import modules
 from dependencies import *
+from core.database import db # DB config
+from core.models.User import User
+from core.dto.UserDTO import UserDTO
 from routes.users import user_router
-from models.User import User
-from config.db import db # DB config
-from dto.UserDTO import UserDTO
 
 # App instantiation
 app = FastAPI()

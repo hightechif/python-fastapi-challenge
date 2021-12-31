@@ -1,7 +1,7 @@
-from dependencies import *
-from core.models.User import User
-from constant.enums.Gender import Gender
-from constant.enums.Role import Role
+from app.dependencies import *
+from app.models.User import User
+from app.constant.enums.Gender import Gender
+from app.constant.enums.Role import Role
 
 # Data Seeder
 db: List[User] = [

@@ -1,31 +1,19 @@
-# Import modules
-from dependencies import *
-from core.database import db # DB config
-from core.models.User import User
-from core.dto.UserDTO import UserDTO
-from routes.users import user_router
+# Import dependencies
+from fastapi import APIRouter
+from app.dependencies import *
+from app.database import db # DB config
+from app.models.User import User
+from app.dto.UserDTO import UserDTO
 
-# App instantiation
-app = FastAPI()
-
-# Simple asynchronous GET Request
-@app.get("/")
-async def read_root():
-    return {"Hello": "World"}
-
-# Simple asynchronous GET Request with Path variable and Query parameter
-@app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
-
+router = APIRouter()
 
 # Fetch All Users
-@app.get("/api/v1/users")
+@router.get("/")
 async def fetch_users():
     return db
 
 # Fetch User by Id
-@app.get("/api/v1/users/{user_id}")
+@router.get("/{user_id}")
 async def fetch_user_by_id(user_id: UUID):
     for user in db:
         if user.id == user_id:
@@ -36,13 +24,13 @@ async def fetch_user_by_id(user_id: UUID):
     )
 
 # Create New User
-@app.post("/api/v1/users/create")
+@router.post("/create")
 async def register_user(user: User):
     db.append(user)
     return {"message": "New user successfully created", "id": user.id}
 
 # Delete a User
-@app.delete("/api/v1/users/delete/{user_id}")
+@router.delete("/delete/{user_id}")
 async def delete_user(user_id: UUID):
     for user in db:
         if user.id == user_id:
@@ -54,7 +42,7 @@ async def delete_user(user_id: UUID):
     )
 
 #  Update a user
-@app.put("/api/v1/users/update/{user_id}")
+@router.put("/update/{user_id}")
 async def update_user(user_id: UUID, userDTO: UserDTO):
     for user in db:
         if user.id == user_id:
@@ -71,4 +59,3 @@ async def update_user(user_id: UUID, userDTO: UserDTO):
         status_code=404,
         detail=f"user with id: {user_id} doesn't exist."
     )
-

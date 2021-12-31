@@ -1,6 +1,6 @@
 # Import Module
-from dependencies import *
-from constant.enums.Role import Role
+from app.dependencies import *
+from app.constant.enums.Role import Role
 
 # Define User DTO Class
 class UserDTO(BaseModel):

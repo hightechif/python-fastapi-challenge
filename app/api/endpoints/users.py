@@ -9,7 +9,7 @@ from app.dto.UserDTO import UserDTO
 router = APIRouter()
 
 # Fetch All Users
-@router.get("/", response_model=Page[User])
+@router.get("", response_model=Page[User])
 async def fetch_users():
     return paginate(db)
 

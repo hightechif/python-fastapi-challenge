@@ -2,5 +2,5 @@ from app.dependencies import *
 
 # Gender Enum Class
 class Gender(str, Enum):
-    male = "male"
-    female = "female"
+    MALE = "male"
+    FEMALE = "female"

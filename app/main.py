@@ -1,16 +1,20 @@
 # Import modules
-from app.dependencies import *
-from app.database import db # DB config
-from app.models.User import User
-from app.dto.UserDTO import UserDTO
-from app.api.api import api_router
-# from app.core.config import settings
+# import uvicorn
+from typing import Optional
+
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.api import api_router
+
+from app import models
+from app.database import engine
+
+models.Base.metadata.create_all(bind=engine)
+
 # App instantiation
-app = FastAPI(
-    # title=settings.PROJECT_NAME, openapi_url=f"{settings.API_V1_STR}/openapi.json"
-)
+app = FastAPI()
+
 
 # Setup CORS Origins
 origins = [
@@ -29,14 +33,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 # Simple asynchronous GET Request
 @app.get("/")
 async def read_root():
-    return {"Hello": "World"}
+    return {
+        "hello": "fadhil"
+    }
+
 
 # Simple asynchronous GET Request with Path variable and Query parameter
 @app.get("/items/{item_id}")
 async def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
+
 app.include_router(api_router, prefix="/api/v1")
+
+# if __name__ == "__main__":
+#     uvicorn.run("app.api:app", host="0.0.0.0", port=8080, reload=True)

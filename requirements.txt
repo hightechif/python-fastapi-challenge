@@ -1,5 +1,10 @@
-fastapi
+fastapi~=0.73.0
 uvicorn[standard]
 fastapi_pagination
-pydantic[email]
+pydantic[email]~=1.8.2
 gunicorn
+asyncpg
+databases[postgresql]
+psycopg2-binary
+dnspython==2.1.0
+SQLAlchemy

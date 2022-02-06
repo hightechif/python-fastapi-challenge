@@ -32,7 +32,10 @@ app.add_middleware(
 # Simple asynchronous GET Request
 @app.get("/")
 async def read_root():
-    return {"Hello": "World"}
+    return {
+        "api_docs": "https://dataversitas-api.herokuapp.com/docs",
+        "api_docs2": "https://dataversitas-api.herokuapp.com/redoc"
+    }
 
 # Simple asynchronous GET Request with Path variable and Query parameter
 @app.get("/items/{item_id}")
